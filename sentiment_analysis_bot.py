@@ -7,17 +7,17 @@ from collections import Counter
 from aylienapiclient import textapi
 
 if sys.version_info[0] < 3:
-input = raw_input
+    input = raw_input
 
 ## Twitter credentials
-consumer_key = "Your consumer key here"
-consumer_secret = "your secret consumer key here"
-access_token = "your access token here"
-access_token_secret = "your secret access token here"
+consumer_key = "9gd6JoLLkvqYPms1HDXglntOi"
+consumer_secret = "XWG35WsfnuV7hv9uPL0p4VmUgkn7PO7VBKozXXzMI7iMyzGKg7"
+access_token = "1290462026301673480-zcGvdYEPlb7EIa22kYlAZSSdk0vkeg"
+access_token_secret = "zpRRy0wJqNaprfYpmOBGmqkgcObCTeRWwKVMJpIcl1nTa"
 
 ## AYLIEN credentials
-application_id = "Your app ID here"
-application_key = "Your app key here"
+application_id = "4dbfae68"
+application_key = "7d6e2811abffd46bcc3ead862fe6ceee"
 
 ## set up an instance of Tweepy
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -44,36 +44,35 @@ print("--- Gathered Tweets \n")
 file_name = 'Sentiment_Analysis_of_{}_Tweets_About_{}.csv'.format(number, query)
 
 with open(file_name, 'w', newline='') as csvfile:
-csv_writer = csv.DictWriter(
-f=csvfile,
-fieldnames=["Tweet", "Sentiment"]
-)
-csv_writer.writeheader()
+    csv_writer = csv.DictWriter(
+        f=csvfile,
+        fieldnames=["Tweet", "Sentiment"]
+    )
+    csv_writer.writeheader()
 
 print("--- Opened a CSV file to store the results of your sentiment analysis... \n")
 
 ## tidy up the Tweets and send each to the AYLIEN Text API
 for c, result in enumerate(results, start=1):
-tweet = result.text
-tidy_tweet = tweet.strip().encode('ascii', 'ignore')
-
-if len(tweet) == 0:
-print('Empty Tweet')
-continue
-
+    tweet = result.text
+    tidy_tweet = tweet.strip().encode('ascii', 'ignore')
+    if len(tweet) == 0:
+        print('Empty Tweet')
+        continue
+    
 response = client.Sentiment({'text': tidy_tweet})
 csv_writer.writerow({
-'Tweet': response['text'],
-'Sentiment': response['polarity']
-})
+    'Tweet': response['text'],
+    'Sentiment': response['polarity']
+    })
 
 print("Analyzed Tweet {}".format(c))
 
 ## count the data in the Sentiment column of the CSV file
 with open(file_name, 'r') as data:
-counter = Counter()
-for row in csv.DictReader(data):
-counter[row['Sentiment']] += 1
+    counter = Counter()
+    for row in csv.DictReader(data):
+        counter[row['Sentiment']] += 1
 
 positive = counter['positive']
 negative = counter['negative']
@@ -95,3 +94,4 @@ startangle=90
 
 plt.title("Sentiment of {} Tweets about {}".format(number, query))
 plt.show()
+
