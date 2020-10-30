@@ -2,33 +2,59 @@ import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def sentiment_analyzer_scores(sentence):
+    '''
+    Returns the sentiment score for the sentence.
+    Input:
+    -----
+    sentence : str
+               single tweet
+    
+    Output:
+    ------
+    score : dct
+            positive, negative, neutral and compound scores.
+    '''
     score = analyser.polarity_scores(sentence)
 #     print(f"{sentence:-<40} {score}")
     return score
 
 def compound_score(document):
+    '''Returns compound score 
+    Input:
+    -----
+    document : str
+    
+    Output:
+    ------
+    score_dct['compound'] : float
+                            Compound score
+    '''
+    
     score_dct = sentiment_analyzer_scores(document)
     return score_dct['compound']
 
 def is_trump(document):
+    '''Checks if word Trump is in the tweet and counts occurences'''
     return document.lower().count('trump')
 
 def is_biden(document):
+    '''Checks if word Biden is in the tweet and counts occurences'''
     return document.lower().count('biden')
 
-def is_trumpdisgrace(document):
-    tot = document.lower().count('#trumpisanationaldisgrace')
-    return -tot
+# def is_trumpdisgrace(document):
+#     tot = document.lower().count('#trumpisanationaldisgrace')
+#     return -tot
 
-def is_creepyjoe(document):
-    tot = 0
-    tot += document.lower().count('#creepyjoe')
-    tot += document.lower().count('#creepyjoebiden')
-    tot += document.lower().count('#sleepyjoe')
-    tot += document.lower().count('#sleepyjoebiden')
-    return -tot
+# def is_creepyjoe(document):
+#     tot = 0
+#     tot += document.lower().count('#creepyjoe')
+#     tot += document.lower().count('#creepyjoebiden')
+#     tot += document.lower().count('#sleepyjoe')
+#     tot += document.lower().count('#sleepyjoebiden')
+#     return -tot
 
 def categorize_sent(sent_val, th = threshold):
+    '''Categorizes sent column'''
     if sent_val < -threshold:
         return -1
     elif (sent_val >= -threshold) & (sent_val <= threshold):
@@ -37,6 +63,7 @@ def categorize_sent(sent_val, th = threshold):
         return 1
 
 def summary(df, th = threshold):
+    '''Summarizes dataframe and returns count of each polarity in a dict format'''
     dct = {'neu': 0, 'pos': 0, 'neg': 0}
     dct['neu'] = df[(df['sent'] >= -th) & (df['sent'] <= th)]['sent'].count()
     dct['pos'] = df[df['sent'] > th]['sent'].count()
