@@ -12,6 +12,19 @@ We used the dataset available at link to full data set: <>
 
 This dataset had 386 million Tweets, starting from May 20, 2019. The contributors leveraged the Twitter API to follow specified accounts that mentioned specific keywords.
 
+Data Source: [GitHub Repo link provided @12PM Friday 10/29/2020]
+Clone [GitHub Repo link provided @12PM Friday 10/29/2020]
+Follow the instructions in the repository to install twarc and tqdm.
+Apply for a twitter developer account.
+Save api key, save api secret key, save bearer token.
+Enter your twitter api information into twarc.
+Use a mv command to move the contents of the desired days into a new single directory.
+Look inside the cloned repository for the appropriate .txt files containing tweet ids. (ex. cat * >> file name.txt)
+Concatenate those files into one file.
+In the terminal, use awk 'NR % 100 == 0' <file.txt> > <result.txt> to systematically sample every 100th tweet id. These are the tweets you will hydrate.
+Modify the hydrate.py script in the cloned repository and run the script to rehydrate tweets from your file of tweet ids.
+Analyze tweets.
+
 <INSERT MORE INFO ABOUT DATASET HERE>
 
 **How many tweets did we use in training/test sets?
