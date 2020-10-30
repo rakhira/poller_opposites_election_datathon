@@ -55,7 +55,7 @@ After doing so, we filtered tweets into three categories:
 
 Setting sentiment scores as the following:
 - sentiment <0 indicates **negative** sentiment
-- sentiment >0 indicates **positive* sentiment
+- sentiment >0 indicates **positive** sentiment
 - sentiment = 0 indicates **neutral** sentiment
 
 The results were: 
