@@ -80,10 +80,10 @@ The results were:
 
 We can see that Trump is almost 3 times more discussed in Twitter compare to Biden. Although Biden has less positive comments he has less negative comments too. It seems that in general Trump make people react actively.
 
-## Evaluation
-
 ## Deployment
 
 Future steps:
-1) Create a tweet sentiment analysis chat bot that solicits which keywords the user wants to analyze and how many tweets to be pulled from the Twitter API
-2) Implement the chat bot into a Flask or web-based app
+1) Evaluating sentiment analysis results with some labels made by hand
+2) Create a tweet sentiment analysis chat bot that solicits which keywords the user wants to analyze and how many tweets to be pulled from the Twitter API
+3) Implement the chat bot into a Flask or web-based app
+
