@@ -80,6 +80,16 @@ The results were:
 
 We can see that Trump is almost 3 times more discussed in Twitter compare to Biden. Although Biden has less positive comments he has less negative comments too. It seems that in general Trump make people react actively.
 
+## MVP
+![](images/clus0.png)
+![](images/clus1.png)
+![](images/clus2.png)
+![](images/clus3.png)
+![](images/clus4.png)
+![](images/clus5.png)
+![](images/clus6.png)
+
+
 ## Deployment
 
 Future steps:
