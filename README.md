@@ -12,6 +12,19 @@ We used the dataset available at link to full data set: <>
 
 This dataset had 386 million Tweets, starting from May 20, 2019. The contributors leveraged the Twitter API to follow specified accounts that mentioned specific keywords.
 
+* Data Source: [GitHub Repo link provided @12PM Friday 10/29/2020]
+* Clone [GitHub Repo link provided @12PM Friday 10/29/2020]
+* Follow the instructions in the repository to install twarc and tqdm.
+* Apply for a twitter developer account.
+* Save api key, save api secret key, save bearer token.
+* Enter your twitter api information into twarc.
+* Use a mv command to move the contents of the desired days into a new single directory.
+* Look inside the cloned repository for the appropriate .txt files containing tweet ids. (ex. cat * >> file name.txt)
+* Concatenate those files into one file.
+* In the terminal, use awk 'NR % 100 == 0' <file.txt> > <result.txt> to systematically sample every 100th tweet id. These are the tweets you will hydrate.
+* Modify the hydrate.py script in the cloned repository and run the script to rehydrate tweets from your file of tweet ids.
+* Analyze tweets.
+
 <INSERT MORE INFO ABOUT DATASET HERE>
 
 **How many tweets did we use in training/test sets?
@@ -46,7 +59,7 @@ This plot shows the distribution of tweets by location, broken down by state and
 
 ## Modeling
 
-After applying sentiment analysis through the VaderSentiment library, we assigned a sentiment score ranging from -1 to 1 to each cleaned tweet.
+After applying sentiment analysis through the VaderSentiment library, which is a lexicon and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media. We assigned a sentiment score ranging from -1 to 1 to each cleaned tweet.
 
 After doing so, we filtered tweets into three categories:
 1. mentions **Trump**
@@ -54,16 +67,18 @@ After doing so, we filtered tweets into three categories:
 3. mentions **Trump AND Biden**
 
 Setting sentiment scores as the following:
-- sentiment <0 indicates **negative** sentiment
-- sentiment >0 indicates **positive** sentiment
-- sentiment = 0 indicates **neutral** sentiment
+- sentiment <0.5 indicates **negative** sentiment
+- sentiment >0.5 indicates **positive** sentiment
+- sentiment >= -0.5 and <= 0.5 indicates **neutral** sentiment
 
 The results were: 
 ||Trump|Biden|Trump + Biden|
 |------|------|------|------|
-|**Postive**|26766|8890|4374|
-|**Negative**|21894|7848|6111|
-|**Neutral**|19541|6650|4025|
+|**Postive**|26420|8789|4298|
+|**Negative**|21562|7767|6032|
+|**Neutral**|20219|6832|4180|
+
+We can see that Trump is almost 3 times more discussed in Twitter compare to Biden. Although Biden has less positive comments he has less negative comments too. It seems that in general Trump make people react actively.
 
 ## Evaluation
 
