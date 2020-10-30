@@ -2,9 +2,12 @@ import sys
 import csv
 import tweepy
 import matplotlib.pyplot as plt
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+analyser = SentimentIntensityAnalyzer()
 
 from collections import Counter
-from aylienapiclient import textapi
+# from aylienapiclient import textapi
 
 if sys.version_info[0] < 3:
     input = raw_input
@@ -15,17 +18,17 @@ consumer_secret = "XWG35WsfnuV7hv9uPL0p4VmUgkn7PO7VBKozXXzMI7iMyzGKg7"
 access_token = "1290462026301673480-zcGvdYEPlb7EIa22kYlAZSSdk0vkeg"
 access_token_secret = "zpRRy0wJqNaprfYpmOBGmqkgcObCTeRWwKVMJpIcl1nTa"
 
-## AYLIEN credentials
-application_id = "d4e68bc1"
-application_key = "38438a8469d97b0a3d1afe9773605191"
+# ## AYLIEN credentials
+# application_id = "d4e68bc1"
+# application_key = "38438a8469d97b0a3d1afe9773605191"
 
 ## set up an instance of Tweepy
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-## set up an instance of the AYLIEN Text API
-client = textapi.Client(application_id, application_key)
+# ## set up an instance of the AYLIEN Text API
+# client = textapi.Client(application_id, application_key)
 
 ## search Twitter for something that interests you
 query = input("What subject do you want to analyze for this example? \n")
