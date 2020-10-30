@@ -68,3 +68,7 @@ The results were:
 ## Evaluation
 
 ## Deployment
+
+Future steps:
+1) Create a tweet sentiment analysis chat bot that solicits which keywords the user wants to analyze and how many tweets to be pulled from the Twitter API
+2) Implement the chat bot into a Flask or web-based app
